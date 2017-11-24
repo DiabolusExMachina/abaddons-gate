@@ -1,0 +1,30 @@
+html,body,#root{
+  font-family: sans-serif;
+  height: 98%;
+}
+
+.App{
+  height: 100%; 
+  width: 100%;
+  background-color: gray;
+}
+
+.GatesContainer{
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 100%; 
+  width: 100%;
+  background-color:rgb(139, 139, 80);
+  overflow: auto;
+}
+
+.Gate{
+  margin: 10px;
+  flex: 10;
+  flex-basis: 100px;
+  min-height: 100px;
+  min-width: 160px;
+  max-width:200px;
+  background: chocolate;
+  border: solid black 2px;
+}
