@@ -14,12 +14,12 @@ export default class Settings extends Component {
 
     render() {
         return (
-            <div className="settings">
+            <div className="settings" align="right">
+                <button name="+" onClick={this.onResize}>+</button>
+                <button name="-" onClick={this.onResize}>-</button>
+                |
                 Url: <input type="text" name="url" value={this.state.url} onChange={this.changeUrl} />
                 <button onClick={this.onAdd}>add</button>
-                |
-                <button name="-" onClick={this.onResize}>-</button>
-                <button name="+" onClick={this.onResize}>+</button>
             </div>
         );
     }
