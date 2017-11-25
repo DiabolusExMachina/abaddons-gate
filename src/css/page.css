@@ -1,24 +1,25 @@
 html,body,#root{
   font-family: sans-serif;
-  height: 98%;
+  height: 100%;
+  background: rgb(180, 180, 180);
 }
 
 .App{
-  height: 100%; 
-  width: 100%;
-  background-color: gray;
 }
 
 .GatesContainer{
   display: flex;
   flex-wrap: wrap;
-  max-height: 100%; 
-  width: 100%;
-  background-color:rgb(139, 139, 80);
-  overflow: auto;
+  justify-content: center;
 }
 
 .Gate{
+  margin: 5px;
+  background: chocolate;
+  border: solid black 2px;
+}
+
+.Gate_2{
   margin: 10px;
   flex: 10;
   flex-basis: 100px;
