@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Gate from './Gate';
-import Controls from './Controls';
+import Settings from './Settings';
 
 export default class App extends Component {
 
@@ -12,7 +12,7 @@ export default class App extends Component {
     this.state = {
       gates: [],
       settings: {
-        width: 180,
+        width: 175,
         height: 100,
       },
     };
@@ -27,7 +27,7 @@ export default class App extends Component {
 
     return (
       <div className="App">
-        <Controls
+        <Settings
           addGate={this.addGate}
           settings={this.state.settings}
           changeSettings={this.changeSettings} />

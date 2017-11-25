@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Controls extends Component {
+export default class Settings extends Component {
 
     constructor(props) {
         super(props);
@@ -14,13 +14,12 @@ export default class Controls extends Component {
 
     render() {
         return (
-            <div>
+            <div className="settings">
                 Url: <input type="text" name="url" value={this.state.url} onChange={this.changeUrl} />
                 <button onClick={this.onAdd}>add</button>
                 |
                 <button name="-" onClick={this.onResize}>-</button>
                 <button name="+" onClick={this.onResize}>+</button>
-                <p />
             </div>
         );
     }
