@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Gate from './Gate';
 import Settings from './Settings';
+import dragula from 'react-dragula';
+import 'dragula/dist/dragula.css';
 
 export default class App extends Component {
 
@@ -18,7 +20,6 @@ export default class App extends Component {
     };
   }
 
-
   render() {
     const gates = this.state.gates.map(gate => <Gate
       key={gate.id}
@@ -26,17 +27,26 @@ export default class App extends Component {
       settings={this.state.settings} />)
 
     return (
-      <div className="App">
+      <div className="App" >
         <Settings
           addGate={this.addGate}
           settings={this.state.settings}
           changeSettings={this.changeSettings} />
-        <div className="GatesContainer">
+        <div className="GatesContainer" ref={this.dragulaDecorator}>
           {gates}
         </div>
       </div>
     );
   }
+
+
+  dragulaDecorator = (componentBackingInstance) => {
+    if (componentBackingInstance) {
+      let options = { };
+      dragula([componentBackingInstance], options);
+    }
+  };
+
 
   addGate(gate) {
     if (gate && gate.url) {

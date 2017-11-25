@@ -5,7 +5,7 @@ export default class Gate extends Component {
     render() {
         const url = this.getUrl();
         return (
-            <div class="Gate"
+            <div className="Gate"
                 style={this.props.settings}
                 onClick={() => { window.open(url) }}>
                 {this.props.url}
