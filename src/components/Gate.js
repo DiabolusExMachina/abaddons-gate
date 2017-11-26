@@ -8,7 +8,7 @@ export default class Gate extends Component {
             <div className="Gate"
                 style={this.props.settings}
                 onClick={() => { window.open(url) }}>
-                {this.props.url}
+                {this.props.name}
             </div>
         );
     }
