@@ -6,44 +6,38 @@ import 'dragula/dist/dragula.css';
 
 export default class GateContainer extends Component {
 
-  constructor(props) {
-    super(props)
-    this.gateCount = 0;
-  }
-
   render() {
     const gates = this.props.gates.map(gate => {
-      if (gate.url) {
-        return <Gate
-          key={gate.id}
-          name={gate.name}
-          url={gate.url}
-          settings={this.props.settings} />
-      } else {
+      if (gate.gates) {
         return <GateContainer
           parent={this}
           settings={this.props.settings}
           name={gate.name}
           gates={gate.gates} />
+      } else {
+        return <Gate
+          key={gate.url}
+          name={gate.name}
+          url={gate.url}
+          settings={this.props.settings} />
       }
     })
 
     const contentView =
       <div className="Gate" style={this.props.settings}>
         Folder: {this.props.name}
+        <div onClickCapture={e =>e.stopPropagation()} className="GatesContainer">
+          {gates}
+        </div>
       </div>;
 
-    const folderView = [
-      <div className="GatesContainer" ref={this.dragulaDecorator}>
+    const folderView =
+      <div className="GatesRootContainer" ref={this.dragulaDecorator}>
         {gates}
-      </div>,
-    ];
-
+      </div>
 
     return this.props.parent ? contentView : folderView;
   }
-
-
 
 
   dragulaDecorator = (componentBackingInstance) => {
@@ -52,8 +46,5 @@ export default class GateContainer extends Component {
       dragula([componentBackingInstance], options);
     }
   };
-
-
-
 
 }

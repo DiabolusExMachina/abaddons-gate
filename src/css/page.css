@@ -13,7 +13,7 @@ html,body,#root{
   width: 100%;
 }
 
-.GatesContainer{
+.GatesRootContainer{
   margin-top: 5px; 
   display: flex;
   flex-wrap: wrap;
@@ -23,7 +23,21 @@ html,body,#root{
 .Gate{
   margin: 5px;
   background: chocolate;
-  min-width: 100px;
-  min-height: 25px;
+  width: 100px;
+  height: 25px;
   border: solid black 2px;
+}
+
+.GatesContainer{
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.GatesContainer .Gate{
+  font-size: small;
+  word-wrap: break-word;
+  width: 30% !important;
+  height:35% !important;
 }

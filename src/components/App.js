@@ -3,89 +3,74 @@ import Settings from './Settings';
 import GateContainer from './GateContainer';
 
 const gateSamples = [
-    {
-        id: 1,
-        name: "google",
-        url: "https://google.de",
-        order: 1,
-    },
-    {
-        id: 4,
-        name: "twitch",
-        url: "https://twitch.com",
-        order: 2,
-    },
-    {
-        id: 2,
-        name: "Nachrichten",
-        order: 2,
-        gates: [
-            {
-                id: 3,
-                name: "Spiegel Online",
-                url: "https://spiegel.de/",
-                order: 1,
-            },
-            {
-                id: 4,
-                name: "Tagesschau",
-                url: "https://taggeschau.de",
-                order: 2,
-            }
-        ]
-    }
+  {
+    name: "google",
+    url: "https://google.de",
+  },
+  {
+    name: "twitch",
+    url: "https://twitch.com",
+  },
+  {
+    name: "Nachrichten",
+    gates: [
+      {
+        name: "Spiegel Online",
+        url: "https://spiegel.de/",
+      },
+      {
+        name: "Tagesschau",
+        url: "https://taggeschau.de",
+      }
+    ]
+  }
 
 ]
 
-export default class componentName extends Component {
+export default class App extends Component {
 
-    constructor(props) {
-        super(props);
-        this.changeSettings = this.changeSettings.bind(this);
-        this.addGate = this.addGate.bind(this);
-        this.gateId = 5;
-        this.state = {
-            gates: gateSamples,
-            settings: {
-                width: 175,
-                height: 100,
-            },
-        }
+  constructor(props) {
+    super(props);
+    this.changeSettings = this.changeSettings.bind(this);
+    this.addGate = this.addGate.bind(this);
+    this.state = {
+      gates: gateSamples,
+      settings: {
+        width: 175,
+        height: 100,
+      },
     }
+  }
 
-    render() {
-        return (
-            <div className="App"  >
-                <Settings
-                    addGate={this.addGate}
-                    settings={this.state.settings}
-                    changeSettings={this.changeSettings} />
-                <GateContainer
-                   
-                    settings={this.state.settings}
-                    gates={this.state.gates}
-                    getGateId={this.getGateId} />
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="App"  >
+        <Settings
+          addGate={this.addGate}
+          settings={this.state.settings}
+          changeSettings={this.changeSettings} />
+        <GateContainer
+          settings={this.state.settings}
+          gates={this.state.gates}
+          getGateId={this.getGateId} />
+      </div>
+    );
+  }
 
-    addGate(gate) {
-        if (gate && gate.url) {
-            const gates = this.state.gates.slice();
-            this.gateId++;
-            gate.id = this.gateId
-            gate.count = this.gateId;
-            gates.push(gate)
-            this.setState({ gates })
-        } else {
-            this.addGate({
-                url: Math.random().toString(36).substring(7)
-            })
-        }
-        this.gateCount++;
+  addGate(gate) {
+    if (gate && gate.url) {
+      const gates = this.state.gates.slice();
+      gates.push(gate)
+      this.setState({ gates })
+    } else {
+      this.addGate({
+        name: Math.random().toString(36).substring(7),
+        url: Math.random().toString(36).substring(7)
+      })
     }
+  }
 
-    changeSettings(settings) {
-        this.setState({ settings })
-    }
+  changeSettings(settings) {
+    this.setState({ settings })
+  }
 }
