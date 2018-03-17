@@ -1,0 +1,27 @@
+[
+    {
+        "name": "google",
+        "url": "https://google.de"
+    },
+    {
+        "name": "twitch",
+        "url": "https://twitch.com"
+    },
+    {
+        "name": "Nachrichten",
+        "gates": [
+            {
+                "name": "Spiegel Online",
+                "url": "https://spiegel.de/"
+            },
+            {
+                "name": "Taz",
+                "url": "http://www.taz.de/"
+            },
+            {
+                "name": "Tagesschau",
+                "url": "https://taggeschau.de"
+            }
+        ]
+    }
+]

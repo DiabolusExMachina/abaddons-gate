@@ -1,65 +1,41 @@
 import React, { Component } from 'react';
-import Settings from './Settings';
+import Configurator from './Configurator';
 import GateContainer from './GateContainer';
-
-const gateSamples = [
-  {
-    name: "google",
-    url: "https://google.de",
-  },
-  {
-    name: "twitch",
-    url: "https://twitch.com",
-  },
-  {
-    name: "Nachrichten",
-    gates: [
-      {
-        name: "Spiegel Online",
-        url: "https://spiegel.de/",
-      },
-      {
-        name: "Tagesschau",
-        url: "https://taggeschau.de",
-      }
-    ]
-  }
-
-]
+import Favorites from './../data/Favorites.json';
+import Settings from './../data/Settings.json';
 
 export default class App extends Component {
 
   constructor(props) {
     super(props);
-    this.changeSettings = this.changeSettings.bind(this);
-    this.addGate = this.addGate.bind(this);
     this.state = {
-      gates: gateSamples,
-      settings: {
-        width: 175,
-        height: 100,
-      },
+      gates: Favorites,
+      settings: Settings
     }
   }
 
   render() {
     return (
       <div className="App"  >
-        <Settings
+        <Configurator
           addGate={this.addGate}
           settings={this.state.settings}
-          changeSettings={this.changeSettings} />
+          changeSettings={this.changeSettings}
+        />
         <GateContainer
+          root={true}
           settings={this.state.settings}
-          gates={this.state.gates}
-          getGateId={this.getGateId} />
+          parent={this.state.parent}
+          self={{ gates: this.state.gates }}
+          openGate={this.openGate}
+        />
       </div>
     );
   }
 
-  addGate(gate) {
+  addGate = (gate) => {
     if (gate && gate.url) {
-      const gates = this.state.gates.slice();
+      const gates = this.state.gates;
       gates.push(gate)
       this.setState({ gates })
     } else {
@@ -70,7 +46,16 @@ export default class App extends Component {
     }
   }
 
-  changeSettings(settings) {
+  openGate = (gate, parent) => {
+    if (gate && gate.gates) {
+      this.setState({
+        parent: parent,
+        gates: gate.gates
+      })
+    }
+  }
+
+  changeSettings = (settings) => {
     this.setState({ settings })
   }
 }

@@ -7,38 +7,47 @@ import 'dragula/dist/dragula.css';
 export default class GateContainer extends Component {
 
   render() {
-    const gates = this.props.gates.map(gate => {
+    const gates = this.props.self.gates.map(gate => {
       if (gate.gates) {
         return <GateContainer
-          parent={this}
+          key={gate.name}
           settings={this.props.settings}
-          name={gate.name}
-          gates={gate.gates} />
+          parent={this.props.self}
+          self={gate}
+          openGate={this.props.openGate}
+        />
       } else {
         return <Gate
           key={gate.url}
           name={gate.name}
           url={gate.url}
-          settings={this.props.settings} />
+          settings={this.props.settings}
+        />
       }
     })
 
-    const contentView =
-      <div className="Gate" style={this.props.settings}>
-        Folder: {this.props.name}
-        <div onClickCapture={e =>e.stopPropagation()} className="GatesContainer">
+    return this.props.root ?
+      <div>
+        <button style={{ visibility: this.props.parent ? "" : "hidden" }}
+          onClick={e => this.onGateContainerClick(e, this.props.parent, this.props.parent.parent)} > {"<-"} </button>
+        <div className="GatesRootContainer" ref={this.dragulaDecorator}>
           {gates}
         </div>
-      </div>;
-
-    const folderView =
-      <div className="GatesRootContainer" ref={this.dragulaDecorator}>
-        {gates}
+      </div >
+      :
+      <div className="Gate" style={this.props.settings}>
+        Folder: {this.props.self.name}
+        <div onClickCapture={e => this.onGateContainerClick(e, this.props.self, this.props.parent)} className="GatesContainer">
+          {gates}
+        </div>
       </div>
-
-    return this.props.parent ? contentView : folderView;
   }
 
+
+  onGateContainerClick = (event, gate, parent) => {
+    this.props.openGate(gate, parent);
+    event.stopPropagation();
+  }
 
   dragulaDecorator = (componentBackingInstance) => {
     if (componentBackingInstance) {
@@ -46,5 +55,7 @@ export default class GateContainer extends Component {
       dragula([componentBackingInstance], options);
     }
   };
+
+
 
 }
