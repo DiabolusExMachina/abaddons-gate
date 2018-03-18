@@ -34,12 +34,14 @@ html,body,#root{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-content: flex-start;
 }
 
 .GatesContainer .Gate{
   margin: 2px;
   font-size: small;
   word-wrap: break-word;
+  overflow: hidden;    
   width: 27% !important;
   height:30% !important;
 }

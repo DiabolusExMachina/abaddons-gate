@@ -1,27 +1,47 @@
-[
-    {
-        "name": "google",
-        "url": "https://google.de"
-    },
-    {
-        "name": "twitch",
-        "url": "https://twitch.com"
-    },
-    {
-        "name": "Nachrichten",
-        "gates": [
-            {
-                "name": "Spiegel Online",
-                "url": "https://spiegel.de/"
-            },
-            {
-                "name": "Taz",
-                "url": "http://www.taz.de/"
-            },
-            {
-                "name": "Tagesschau",
-                "url": "https://taggeschau.de"
-            }
-        ]
-    }
-]
+{
+    "name": "root",
+    "gates": [
+        {
+            "name": "google",
+            "url": "https://google.de"
+        },
+        {
+            "name": "twitch",
+            "url": "https://twitch.com"
+        },
+        {
+            "name": "Nachrichten",
+            "gates": [
+                {
+                    "name": "Spiegel Online",
+                    "url": "https://spiegel.de/"
+                },
+                {
+                    "name": "Taz",
+                    "url": "http://www.taz.de/"
+                },
+                {
+                    "name": "Tagesschau",
+                    "url": "https://taggeschau.de"
+                },
+                {
+                    "name": "Audrey",
+                    "gates": [
+                        {
+                            "name": "ravelry",
+                            "url": "https://www.ravelry.com//"
+                        },
+                        {
+                            "name": "feedly",
+                            "url": "https://feedly.com/"
+                        },
+                        {
+                            "name": "pinterest",
+                            "url": "https://www.pinterest.de/"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

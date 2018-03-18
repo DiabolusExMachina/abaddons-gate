@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Configurator from './Configurator';
 import GateContainer from './GateContainer';
-import Favorites from './../data/Favorites.json';
+import root from './../data/Favorites.json';
 import Settings from './../data/Settings.json';
 
 export default class App extends Component {
@@ -9,7 +9,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gates: Favorites,
+      gate: root,
       settings: Settings
     }
   }
@@ -26,7 +26,7 @@ export default class App extends Component {
           root={true}
           settings={this.state.settings}
           parent={this.state.parent}
-          self={{ gates: this.state.gates }}
+          self={this.state.gate}
           openGate={this.openGate}
         />
       </div>
@@ -47,13 +47,14 @@ export default class App extends Component {
   }
 
   openGate = (gate, parent) => {
-    if (gate && gate.gates) {
-      this.setState({
-        parent: parent,
-        gates: gate.gates
-      })
-    }
+    gate.parent = parent;
+    console.log("open gate", gate.name, "parent", parent ?  parent.name : "none")
+    this.setState({
+      parent: parent,
+      gate: gate
+    })
   }
+
 
   changeSettings = (settings) => {
     this.setState({ settings })

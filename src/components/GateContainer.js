@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Gate from './Gate';
-
+import Navigator from './Navigator';
 import dragula from 'react-dragula';
 import 'dragula/dist/dragula.css';
 
@@ -28,8 +28,7 @@ export default class GateContainer extends Component {
 
     return this.props.root ?
       <div>
-        <button style={{ visibility: this.props.parent ? "" : "hidden" }}
-          onClick={e => this.onGateContainerClick(e, this.props.parent, this.props.parent.parent)} > {"<-"} </button>
+        <Navigator gate={this.props.self} navigateTo={this.onGateContainerClick} />  
         <div className="GatesRootContainer" ref={this.dragulaDecorator}>
           {gates}
         </div>
